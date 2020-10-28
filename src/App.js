@@ -25,7 +25,12 @@ export default function App() {
         
     }
     
-    const handleUserAnswer = () => {
+    const handleUserAnswer = (answerClicked) => {
+        if (answerClicked == triviaQs[currentQ].correct) {
+            alert("correct");
+        } else {
+            alert("incorrect")
+        }
 
 
     }
@@ -37,9 +42,11 @@ export default function App() {
                 <h3>Question #{currentQ+1}/{triviaQs.length}</h3>
                 <h6>{triviaQs[currentQ].question}</h6>
                 <div className="show-options">
-                    {for (i=0, i<triviaQs[currentQ].allOptions.length, i++) {
-                        <button>{triviaQs[currentQ].allOptions[i]}</button>
-                    }}
+                    {triviaQs[currentQ].allOptions.map(allOptions => (
+                        <button onClick={() => handleUserAnswer(allOptions)}>{allOptions}</button>
+                    ))}
+
+                    
 
             
                 </div>
