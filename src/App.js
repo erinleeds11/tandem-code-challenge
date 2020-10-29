@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import  { useEffect } from 'react';
 import triviaQs from "./questions/Apprentice_TandemFor400_Data.json";
 
 for (let i in triviaQs) {
@@ -14,16 +15,25 @@ export default function App() {
     const [numCorrect, setNumCorrect] = useState(0);
     const [finalResults, displayFinalResults] = useState(false);
     const [continueCount, setContinueCount] = useState(true);
+    const [playAgain, setPlayAgain] = useState(true);
     
+    useEffect(()=> {
+        const n = 10;
+        const triviaTenQs = triviaQs
+        .map(x => ({ x, r: Math.random() }))
+        .sort((a, b) => a.r - b.r)
+        .map(a => a.x)
+        .slice(0, n);
 
+        console.log("sample", triviaTenQs)
+
+    },[playAgain])
     const handleUserAnswer = (answerClicked) => {
-        if (answerClicked == triviaQs[currentQ].correct && continueCount == true) {
-            // alert("Correct");
+        const correct = triviaQs[currentQ].correct;
+        if (answerClicked === correct && continueCount == true) {
             setNumCorrect(numCorrect+1); 
-        } else {
-            // alert("Incorrect");
-            
         }
+        alert("Correct Answer is "+ correct);
 
         const nextQ = currentQ + 1
         if (nextQ < triviaQs.length) {
@@ -36,14 +46,15 @@ export default function App() {
     }
     const handlePlayAgain = (ans) => {
         if (ans == "yes") {
+            setPlayAgain(true);
             console.log("yes")
             setCurrentQ(0);
             setNumCorrect(0);
             displayFinalResults(false);
             setContinueCount(true);
         } else {
-            setPlayAgain(false);
-            console.log(playAgain)
+            alert("Thanks for playing!")
+            setPlayAgain(false)
         }
         
     }
