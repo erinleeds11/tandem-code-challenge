@@ -14,13 +14,15 @@ export default function App() {
     const [numCorrect, setNumCorrect] = useState(0);
     const [finalResults, displayFinalResults] = useState(false);
     const [continueCount, setContinueCount] = useState(true);
+    
 
     const handleUserAnswer = (answerClicked) => {
         if (answerClicked == triviaQs[currentQ].correct && continueCount == true) {
-            // alert("correct");
+            // alert("Correct");
             setNumCorrect(numCorrect+1); 
         } else {
-            alert("incorrect")
+            // alert("Incorrect");
+            
         }
 
         const nextQ = currentQ + 1
@@ -32,11 +34,18 @@ export default function App() {
             
         }
     }
-    const handlePlayAgain = () => {
-        setCurrentQ(0);
-        setNumCorrect(0);
-        displayFinalResults(false);
-        setContinueCount(true);
+    const handlePlayAgain = (ans) => {
+        if (ans == "yes") {
+            console.log("yes")
+            setCurrentQ(0);
+            setNumCorrect(0);
+            displayFinalResults(false);
+            setContinueCount(true);
+        } else {
+            setPlayAgain(false);
+            console.log(playAgain)
+        }
+        
     }
 
     
@@ -52,8 +61,8 @@ export default function App() {
                             <h3 className="top center">Trivia Results </h3>
                             <h3 className="center">{numCorrect}/{triviaQs.length}</h3>
                             <div className="center"><h6>Play again?</h6></div>
-                            <button className="btn btn-sml btn-block"id="yes" value="yes" onClick={() => handlePlayAgain()}>Yes</button>
-                            <button  className="btn btn-sml btn-block" id="yes" value="no">No</button>
+                            <button className="btn btn-sml btn-block"id="yes" value="yes" onClick={(e) => handlePlayAgain(e.target.value)}>Yes</button>
+                            <button  className="btn btn-sml btn-block" id="no" value="no"onClick={(e) => handlePlayAgain(e.target.value)}>No</button>
                         </div>
                         <div className="col"></div>
                     </div>
