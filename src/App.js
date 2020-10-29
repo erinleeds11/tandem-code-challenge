@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import triviaQs from "./questions/Apprentice_TandemFor400_Data.json";
 
 for (let i in triviaQs) {
@@ -14,57 +13,77 @@ export default function App() {
     const [currentQ, setCurrentQ] = useState(0);
     const [numCorrect, setNumCorrect] = useState(0);
     const [finalResults, displayFinalResults] = useState(false);
-    const [welcomeScreen, setWelcomeScreen] = useState(true);
+    const [continueCount, setContinueCount] = useState(true);
 
-    const handleWelcomeScreen = (value) => {
-        if (value == "yes") {
-            setWelcomeScreen(false);
-        }
-
-    }
-    
     const handleUserAnswer = (answerClicked) => {
-        if (answerClicked == triviaQs[currentQ].correct) {
+        if (answerClicked == triviaQs[currentQ].correct && continueCount == true) {
             // alert("correct");
             setNumCorrect(numCorrect+1); 
         } else {
-            // alert("incorrect")
+            alert("incorrect")
         }
 
         const nextQ = currentQ + 1
         if (nextQ < triviaQs.length) {
             setCurrentQ(currentQ+1)
         } else {
-            displayFinalResults(true)
+            setContinueCount(false);
+            displayFinalResults(true);
+            
         }
-
-
     }
+    const handlePlayAgain = () => {
+        setCurrentQ(0);
+        setNumCorrect(0);
+        displayFinalResults(false);
+        setContinueCount(true);
+    }
+
+    
 
     return (
         <div>
-            {welcomeScreen? (
-            <div>
-                <h1 id="welcome">Welcome to trivia!</h1>
-                    <div>Would you like to play Tandem's trivia game?</div>
-                        <button id="yes" value="yes" onClick={(e)=> handleWelcomeScreen(e.target.value)}>yes</button>
-                        <button  id="yes" value="no" onClick={(e)=> handleWelcomeScreen(e.target.value)}>no</button>
-                    
-            </div>
+            <div className="title container-fluid"><h1>Tandem Trivia!</h1></div>
+            {finalResults? (
+                <div className="final-results">
+                    <div className="row">
+                        <div className="col"></div>
+                        <div className="results col" >
+                            <h3 className="top center">Trivia Results </h3>
+                            <h3 className="center">{numCorrect}/{triviaQs.length}</h3>
+                            <div className="center"><h6>Play again?</h6></div>
+                            <button className="btn btn-sml btn-block"id="yes" value="yes" onClick={() => handlePlayAgain()}>Yes</button>
+                            <button  className="btn btn-sml btn-block" id="yes" value="no">No</button>
+                        </div>
+                        <div className="col"></div>
+                    </div>
+                </div>
+                
             ) : (
-            <div className="question-box">
-                <h3>Question {currentQ+1}/{triviaQs.length}</h3>
-                <h6>{triviaQs[currentQ].question}</h6>
-                <ul className="show-options">
-                    {triviaQs[currentQ].allOptions.map(allOptions => (
-                        <li><button onClick={() => handleUserAnswer(allOptions)}>{allOptions}</button></li>
-                    ))}
-                </ul>
+            <div className="question-box container-fluid">
+                <div className="row">
+                    <div className="col"></div>
+                    <div className="single-q col">
+                        <h3 className="center underline">Question {currentQ+1}/{triviaQs.length}</h3>
+                        <h6 className="center q">{triviaQs[currentQ].question}</h6>
+                        <ul className="show-options">
+                            {triviaQs[currentQ].allOptions.map(allOptions => (
+                                <button class="btn btn-lg btn-block"  onClick={() => handleUserAnswer(allOptions)}>{allOptions}</button>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="col"></div>
+                </div>
                 
             </div>
-            )}
-            <div>{finalResults ? <p>Results: {numCorrect}/{triviaQs.length}</p> : null}</div>
-            
+            )} 
+        
+            <div className =" footer container-fluid">
+            <p className="center">Erin Leeds |
+            <i class="fas fa-envelope-square padding"></i>erin@erinleeds.com |
+            <a href="https://linkedin.com/in/erin-leeds"><i className="fab fa-linkedin padding"></i>LinkedIn </a>|
+            <a className="padding"href="https://github.com/erinleeds11"><i className="fab fa-github"></i> GitHub</a></p>
+            </div>
         </div>
 
 
