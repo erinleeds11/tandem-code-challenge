@@ -17,17 +17,17 @@ Trivia game created for Tandem's Apprenticeship code challenge.
 #### Question prompt and answers
 Users can view one question and the corresponding multiple choice options at a time.
 
-![alt text](https://github.com/erinleeds11/faucis-feast/blob/master/static/images/questions.png "questions") 
+![alt text](https://github.com/erinleeds11/tandem-code-challenget/blob/master/static/images/questions.png "questions") 
 
 #### Immediate feedback after selecting an answer
 Users can choose one question they believe is correct and will receive an alert after clicking the button with the correct answer.
 
-![alt text](https://github.com/erinleeds11/faucis-feast/blob/master/static/images/correctAnswer.png "correct") 
+![alt text](https://github.com/erinleeds11/tandem-code-challenge/blob/master/static/images/correctAnswer.png "correct") 
 
 #### Displays number correct
 User can see how they did and have the option to play again.
 
-![alt text](https://github.com/erinleeds11/faucis-feast/blob/master/static/images/results.png "results") 
+![alt text](https://github.com/erinleeds11/tandem-code-challenge/blob/master/static/images/results.png "results") 
 
 #### Immediate feedback after selecting an answer
 
