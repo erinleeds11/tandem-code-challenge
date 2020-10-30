@@ -9,7 +9,6 @@ Trivia game created for Tandem's Apprenticeship code challenge.
 ## <a name="tech-stack"></a>Technologies
 * React
 * JavaScript
-* jQuery
 * HTML
 * CSS
 * Bootstrap
