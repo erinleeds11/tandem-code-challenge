@@ -4,7 +4,10 @@ Trivia game created for Tandem's Apprenticeship code challenge.
 ## Contents
 * [Technologies](#tech-stack)
 * [Features](#features)
+* [Additional Features](#additional)
+* [Known Issues](#issues)
 * [How to run the code](#run)
+
 
 ## <a name="tech-stack"></a>Technologies
 * React
@@ -29,6 +32,18 @@ Users can choose one question they believe is correct and will receive an alert 
 User can see how they did and have the option to play again.
 
 ![alt text](https://github.com/erinleeds11/tandem-code-challenge/blob/master/static/images/results.png "results") 
+
+## <a name="additional"></a>Additional Features
+
+* User can see their previous scores
+* Questions ordered by complexity (easiest -> hardest)
+* Add a progress bar 
+* Button color change on click (correct or incorrect)
+* Shareable link to send quiz and results to friends
+
+## <a name="issues"></a>Known Issues
+* When a user wants to play the game again, they will receive the same 10 questions unless the page is hard refreshed.
+* The correct answer is always the last option.
 
 ## <a name="run"></a>How to run the code
 
